@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rest Countries Data</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="nav">
+          <h1 class="heading">Rest Countries Search</h1>
+          <button><i>theme-i</i><span class="theme">Dark Mode</span></button>
+        </nav>
+        <hr />
+      </header>
+      <main class="main">
+        <div class="mainWarapper">
+          <div class="searchAndSelect">
+            <label for="">
+              <i>search-i</i>
+              <!-- <span>Search for a Country</span> -->
+              <input
+                type="search"
+                name=""
+                id=""
+                placeholder="search for a country"
+                aria-labelledby="search-label"
+              />
+            </label>
+
+            <label for="continents" class="select-label"
+              >Filter by Region</label
+            >
+            <select name="selectCont" class="continents">
+              <optgroup label="continents">
+                <option value="all">All</option>
+                <option value="africa">Africa</option>
+                <option value="americas">Americas</option>
+                <option value="Ocenia">Ocenia</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="countries"></div>
+
+          <div class="modal">
+            <label class="backButton">
+              <input type="button" class="btn" value="back" />
+              <i>leftarrow-i</i>
+            </label>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
