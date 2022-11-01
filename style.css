@@ -1,0 +1,69 @@
+/*Default CSS*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/*Related to current application*/
+:root {
+  --white: #ffffff;
+  --gray: #fafafa;
+  --black: #3c4048;
+  --padding-8: 1rem;
+  --padding-16: 1rem;
+  --padding-24: 1.5rem;
+  --padding-32: 2rem;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: var(--gray);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header {
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.nav {
+  padding-block: var(--padding-32);
+  padding-inline: var(--padding-16);
+  max-width: fit-content;
+}

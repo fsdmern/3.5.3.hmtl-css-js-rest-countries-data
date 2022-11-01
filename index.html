@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
     <title>Rest Countries Data</title>
   </head>
   <body>
@@ -11,15 +26,16 @@
       <header class="header">
         <nav class="nav">
           <h1 class="heading">Rest Countries Search</h1>
-          <button><i>theme-i</i><span class="theme">Dark Mode</span></button>
+          <button>
+            <i class="fa-solid fa-moon"></i><span class="theme">Dark Mode</span>
+          </button>
         </nav>
-        <hr />
       </header>
       <main class="main">
-        <div class="mainWarapper">
+        <div class="mainWrapper">
           <div class="searchAndSelect">
             <label for="">
-              <i>search-i</i>
+              <i class="fa-solid fa-magnifying-glass"></i>
               <!-- <span>Search for a Country</span> -->
               <input
                 type="search"
@@ -45,10 +61,12 @@
             </select>
           </div>
 
-          <div class="countries"></div>
+          <div class="countries">
+            
+          </div>
 
           <div class="modal">
-            <label class="backButton">
+            <label class="backBtn">
               <input type="button" class="btn" value="back" />
               <i>leftarrow-i</i>
             </label>
