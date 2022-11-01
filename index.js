@@ -11,7 +11,7 @@ const searchCountry = document.querySelector("input[type='search']");
 const modalWrapper = document.createElement('div');
 let codeArray = []; //ISO Country Codes
 let countryArray = []; //Names
-let boderArray = []; //Bordering Countries
+let borderArray = []; //Bordering Countries
 
 // async function fecthFunction(api) {
 //   const response = await fetch(api);
@@ -54,7 +54,7 @@ const fetchCountry = async () => {
         country.appendChild(imageBtn);
         country.appendChild(countryDetails);
 
-        countryDetails.innerHTML = (
+        countryDetails.innerHTML = `
           <div className="country-details-wrapper">
             <h2 className="country-details-title">${name.common}</h2>
 
@@ -73,7 +73,161 @@ const fetchCountry = async () => {
               </p>
             </div>
           </div>
-        );
+        )`;
+
+        img.src = `${flags.svg}`;
+
+        imageBtn.addEventListener('click', function () {
+          modal.classList.remove('hide-modal');
+          mainWrapper.classList.add('hide-main-wrapper');
+          borderArray = [];
+          if (typeof borders != 'undefined') {
+            borders.map((country) => {
+              codeArray.forEach((elem, index) => {
+                if (country == elem) {
+                  borderArray.push(countryArray[index]);
+                }
+              });
+            });
+          }
+
+          modal.appendChild(modalWrapper);
+          modalTemplate(element);
+        });
       });
     });
+};
+
+backBtn.addEventListener('click', () => {
+  mainWrapper.classList.remove('hide-main-wrapper');
+  modal.classList.add('hide-modal');
+});
+
+fetchCountry();
+
+const modalTemplate = (element) => {
+  const {
+    currencies,
+    languages,
+    borders,
+    flags,
+    name,
+    population,
+    region,
+    capital,
+    subregion,
+    startOfWeek,
+  } = element;
+
+  const currencyObj = Object.keys(currencies);
+  const currencyList = currencyObj.map((ccy) => currencies[ccy].name);
+  const langs = Object.values(languages);
+  const borderState = typeof borders !== 'undefined';
+  modalWrapper.classList.add('modal-container');
+  const borderBool = modal.classList.contains('darkMode');
+
+  modalWrapper.innerHTML = `<div className="country-details">
+    <img src=${flags.svg} alt="the flag of ${
+    name.common
+  }" className="country-details-img" />
+
+    <div className="primary-seconday">
+        <div className="primary">
+          <h3 class="primary-title">${name.common}</h3>
+
+          <p className="primary-message">
+            <span class="hightLight">Official Name:</span>${name.official}
+          </p>
+
+          <p className="primary-message">
+            <span class="hightLight">Population:</span>${population.toLocaleString()}
+          </p>
+
+           <p className="primary-message">
+            <span class="hightLight">Region: </span>${region}
+          </p>
+
+           <p className="primary-message">
+            <span class="hightLight">Sub Region: </span>${subregion}
+          </p>
+
+           <p className="primary-message">
+            <span class="hightLight">Capital: </span>${capital}
+          </p>
+
+        </div>
+
+        <div className="secondary">
+
+           <p className="secondary-message">
+            <span class="hightLight">Start of the Week: </span>${startOfWeek}
+          </p>
+
+           <p className="secondary-message">
+            <span class="hightLight">Currencies: </span>
+            <ul class="currency-list">
+              ${currencyList.map(
+                (ccy) => `<li class="currency-list-item">
+                    <span class="secondary-currency">${ccy}</span>
+
+                </li>`
+              )}
+
+            </ul>
+          </p>
+
+           <p className="secondary-message">
+            <span class="hightLight">Languages: </span>
+            <ul class="languages">
+              ${langs
+                .map(
+                  (lang) =>
+                    `<li class="lang-list-item">
+                    <span class="secondary-lang">${lang}</span>
+                </li>`
+                )
+                .join(' ')}
+
+            </ul>
+          </p>         
+        </div>
+        
+        <div class="bordering-city"> 
+            <p class="bordering-content">
+            <span class="hightLight">Bordering Countries:</span> 
+            </p>
+            <ul class="bordering"> 
+            ${
+              borderState
+                ? borderArray.map(
+                    (border) => `<li>
+                <button class="border btn ${
+                  borderBool ? 'theme-light' : ''
+                }">${border}</button>
+              <li>`
+                  )
+                : `<li><span>No Bordering Countries</span></li>`
+            }
+            </ul>
+        </div>
+      
+    </div>
+  </div>`;
+
+  const borderingCountries = document.querySelector('.bordering');
+  borderingCountries.addEventListener('click', (e) => {
+    const apiEndPoint = `https://restcountries.com/v3.1/name/{e.target.innerHTML.trim()}`;
+
+    fetch(apiEndPoint)
+      .then((response) => response.json())
+      .then((data) => {
+        borderArray = [];
+        data[0].borders.map((country) => {
+          codeArray.forEach((elem, index) => {
+            if (country == elem) borderArray.push(countryArray[index]);
+          });
+        });
+      });
+    modalTemplate(data[0]);
+  });
 };
