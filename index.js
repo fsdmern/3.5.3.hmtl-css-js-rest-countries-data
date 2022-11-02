@@ -29,7 +29,7 @@ const fetchCountry = async () => {
   fetch(apiEndpoint)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       data.forEach((element) => {
         const {cca3, borders, flags, name, population, region, capital} =
           element;
@@ -217,7 +217,7 @@ const modalTemplate = (element) => {
   const borderingCountries = document.querySelector('.bordering');
   borderingCountries.addEventListener('click', (e) => {
     const apiEndPoint = `https://restcountries.com/v3.1/name/{e.target.innerHTML.trim()}`;
-
+    console.log('inside bordering countries:' + apiEndPoint);
     fetch(apiEndPoint)
       .then((response) => response.json())
       .then((data) => {

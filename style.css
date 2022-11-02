@@ -67,3 +67,26 @@ body {
   padding-inline: var(--padding-16);
   max-width: fit-content;
 }
+
+.countries {
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(autofit, minmax(300px, 1fr)); */
+  /* grid-template-columns: repeat(6, 200px);
+  place-items: center; */
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+
+.flags {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.country-population,
+.country-region,
+.country-capital {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
