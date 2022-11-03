@@ -24,39 +24,42 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav class="nav">
+        <nav class="nav flex">
           <h1 class="heading">Rest Countries Search</h1>
-          <button>
-            <i class="fa-solid fa-moon"></i><span class="theme">Dark Mode</span>
+          <button class="toggle-state-btn">
+            <i class="fa-solid fa-moon fa-w-16"></i
+            ><span class="theme">Dark Mode</span>
           </button>
         </nav>
       </header>
       <main class="main">
         <div class="mainWrapper">
           <div class="searchAndSelect">
-            <label for="">
+            <label class="searchCountry">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <!-- <span>Search for a Country</span> -->
+              <span id="search-label" class="sr-only"
+                >Search for a Country</span
+              >
               <input
                 type="search"
-                name=""
-                id=""
                 placeholder="search for a country"
                 aria-labelledby="search-label"
               />
             </label>
 
-            <label for="continents" class="select-label"
-              >Filter by Region</label
+            <label class="sr-only" id="select-label">Filter by Region</label>
+            <select
+              name="selectCont"
+              class="continents"
+              aria-labelledby="select-label"
             >
-            <select name="selectCont" class="continents">
               <optgroup label="continents">
                 <option value="all">All</option>
                 <option value="africa">Africa</option>
                 <option value="americas">Americas</option>
                 <option value="Ocenia">Ocenia</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
+                <option value="asia">Asia</option>
+                <option value="europe">Europe</option>
               </optgroup>
             </select>
           </div>
@@ -64,8 +67,13 @@
           <div class="countries"></div>
 
           <div class="modal hide-modal">
-            <label class="backBtn">
-              <input type="button" class="btn back-btn" value="back" />
+            <label class="backButton">
+              <input
+                type="button"
+                class="btn back-btn"
+                id="backBtn"
+                value="back"
+              />
               <i class="fa-solid fa-arrow-left-long"></i>
             </label>
           </div>
