@@ -1,11 +1,13 @@
+// Select Various HTML Elements
 const mainWrapper = document.querySelector('.mainWrapper');
 const filterContinent = Array.from(document.querySelectorAll('option'));
 const modal = document.querySelector('.modal');
 const backBtn = document.getElementById('backBtn');
 const continents = document.querySelector('.continents');
 const searchCountry = document.querySelector("input[type='search']");
-
 let modalWrapper = document.createElement('div');
+
+// Select Various HTML Elements
 let codeArray = []; // ISO Country Codes
 let countryArray = []; // Country Names
 let borderArray = []; // Border Countries
@@ -62,17 +64,21 @@ const fetchCountry = async (event) => {
 
         //create an array to hold all ISO Country codes
         codeArray.push(cca3);
+
         //create an array to hold all Country Names
         countryArray.push(name.common);
 
+        // Add country related classes
         country.classList.add('allCountries');
         countryDetails.classList.add('paraName');
 
+        // Add flag related classes/Set Values
         img.classList.add('flags');
         img.alt = `${name.common}'s flag`;
         imageBtn.appendChild(img);
         imageBtn.classList.add('image-btn');
 
+        // Form Country card HTML structure
         countries.appendChild(country);
         country.appendChild(imageBtn);
         country.appendChild(countryDetails);
@@ -126,8 +132,10 @@ backBtn.addEventListener('click', () => {
   modal.classList.add('hide-modal');
 });
 
+// Call Main function
 fetchCountry();
 
+// Seach Button Input Listener
 searchCountry.addEventListener('input', (e) => {
   const resultCountry = e.target.value;
   const availableCountries = Array.from(
@@ -145,6 +153,7 @@ searchCountry.addEventListener('input', (e) => {
   });
 });
 
+// Dropdown Select Input Listener
 const continentSelect = document.querySelector('select');
 continentSelect.onchange = (evt) => {
   const availableCountries = Array.from(
@@ -160,6 +169,8 @@ continentSelect.onchange = (evt) => {
   });
 };
 
+// Create HTML Structure for Flag details page
+// This is being called inside the fetchCountry function
 const modalTemplate = (element) => {
   const {
     currencies,
@@ -190,28 +201,27 @@ const modalTemplate = (element) => {
   } " tabindex=0>
 			<div class="primary-secondary">
 				<div class="primary">           
-           			 <h3 class="primary-title">${name.common}</h3>
+           <h3 class="primary-title">${name.common}</h3>
 					 <div class="primary-divider">
-            	 	 	 <p class="primary-message">
+            <p class="primary-message">
 						   <span class="highLight">Official name:</span>${name.official}
 						</p>
-            	 		<p class="primary-message">
+            <p class="primary-message">
 						  <span class="highLight">Population:</span> ${population.toLocaleString()}
 						</p>
-           				 <p class="primary-message">
+           	<p class="primary-message">
 							<span class="highLight">Region:</span> ${region}
 						</p>
-            	 	 	 <p class="primary-message">
+            <p class="primary-message">
 						   <span class="highLight">Sub region:</span> ${subregion}
 						</p>
-            	 	 	 <p class="primary-message">
+            <p class="primary-message">
 						   <span class="highLight">Capital:</span> ${capital}
 						 </p>
 					  </div>
 			    </div>
 			
-
-          		<div class="secondary">
+          <div class="secondary">
 					<p class="secondary-message">
 						<span class="highLight">Start of Week:</span> ${startOfWeek}
 					</p>
@@ -243,7 +253,7 @@ const modalTemplate = (element) => {
 		 		 </div>
   
 		 		 <div class="bordering-city">
-		  			<p class="bordering-content">
+		  		<p class="bordering-content">
 					  <span class="highLight">Border countries:</span>
 					</p>
 		  			<ul class="bordering">					 
@@ -262,16 +272,15 @@ const modalTemplate = (element) => {
 		   			</ul>
 				 </div>		 
 				 
-
 			</div> 
 	</div>     
 	`;
   const borderingCountries = document.querySelector('.bordering');
-  //add an eventListener to bordering countries
-  // when the btn of bordering country is clicked
-  // respective country should be displayed.
-  borderingCountries.addEventListener('click', (evt) => {
-    const apiEndpoint = `https://restcountries.com/v3.1/name/${evt.target.innerHTML.trim()}`;
+  // add an eventListener to bordering countries
+  // when the btn of bordering country is clicked,
+  // respective country details should be displayed.
+  borderingCountries.addEventListener('click', (e) => {
+    const apiEndpoint = `https://restcountries.com/v3.1/name/${e.target.innerHTML.trim()}`;
 
     fetch(apiEndpoint)
       .then((response) => response.json())
