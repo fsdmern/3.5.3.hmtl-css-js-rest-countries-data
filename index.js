@@ -6,11 +6,12 @@ const continents = document.querySelector('.continents');
 const searchCountry = document.querySelector("input[type='search']");
 
 let modalWrapper = document.createElement('div');
-let codeArray = []; //an array to hold all the alpha3Code for all countries
-let countryArray = []; // an array to hold the names of the countries
-let borderArray = []; // an array to hold countries bordering a country
+let codeArray = []; // ISO Country Codes
+let countryArray = []; // Country Names
+let borderArray = []; // Border Countries
 
-const toggleImg = document.querySelector('.toggle-state-btn'); //Light and dark mode controll
+// Switch Mode
+const toggleImg = document.querySelector('.toggle-state-btn');
 toggleImg.addEventListener('click', () => {
   // const backBtn = document.querySelector(".back-btn");
   const toggleMsg = document.querySelector('.toggle-state-btn span');
@@ -41,9 +42,9 @@ toggleImg.addEventListener('click', () => {
   backBtn.classList.toggle('darkButton');
 });
 
+let url = `https://restcountries.com/v3.1/all`;
 const fetchCountry = async (event) => {
-  //old api that was changed - `https://restcountries.eu/rest/v2/all `;
-  const apiEndpoint = `https://restcountries.com/v3.1/all`;
+  const apiEndpoint = url;
   const countries = document.querySelector('.countries');
 
   await fetch(apiEndpoint)
@@ -54,15 +55,14 @@ const fetchCountry = async (event) => {
         const {cca3, borders, flags, name, population, region, capital} =
           element;
 
-        //const currency = element.currencies.name;
         let country = document.createElement('div');
         let imageBtn = document.createElement('button');
         let countryDetails = document.createElement('div');
         let img = document.createElement('img');
 
-        //create an array to hold all alpha3Code
+        //create an array to hold all ISO Country codes
         codeArray.push(cca3);
-        //create an array to hold all countries
+        //create an array to hold all Country Names
         countryArray.push(name.common);
 
         country.classList.add('allCountries');
@@ -106,8 +106,8 @@ const fetchCountry = async (event) => {
           borderArray = [];
           if (typeof borders != 'undefined') {
             borders.map((country) => {
-              codeArray.forEach((elm, index) => {
-                if (country == elm) {
+              codeArray.forEach((elem, index) => {
+                if (country == elem) {
                   borderArray.push(countryArray[index]);
                 }
               });
@@ -175,7 +175,7 @@ const modalTemplate = (element) => {
   } = element;
 
   const currencyObj = Object.keys(currencies);
-  const currenceList = currencyObj.map((cur) => currencies[cur].name);
+  const currenceList = currencyObj.map((ccy) => currencies[ccy].name);
   const langs = Object.values(languages);
   const borderState = typeof borders !== 'undefined';
   modalWrapper.classList.add('modal-container');
