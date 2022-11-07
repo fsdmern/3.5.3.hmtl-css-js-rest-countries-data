@@ -56,7 +56,6 @@ const fetchCountry = async (event) => {
       data.forEach((element) => {
         const {cca3, borders, flags, name, population, region, capital} =
           element;
-
         let country = document.createElement('div');
         let imageBtn = document.createElement('button');
         let countryDetails = document.createElement('div');
@@ -85,25 +84,24 @@ const fetchCountry = async (event) => {
 
         countryDetails.innerHTML = `
 				<div class="country-details-wrapper">				
-				  	    <h2 class="country-details-title">
+				  	<h2 class="country-details-title">
 						   ${name.common}
 						</h2>
 						<div class="country-details-content">
-				    		 <p class="country-population">
-							     <span class="country-details-data-titles">Population:</span>
-								 <span class="country-details-data-content">${population.toLocaleString()}</span>
-							</p>
-				       		 <p class="country-region">
-								<span class="country-details-data-titles">Region:</span>
-								<span class="country-details-data-content">${region}</span>
-							 </p>
-				        	 <p class="country-capital">
-							 	<span class="country-details-data-titles">Capital:</span>
-							 	<span class="country-details-data-content">${capital}</span>
-							 </p>
+                <p class="country-population">
+                    <span class="country-details-data-titles">Population:</span>
+                  <span class="country-details-data-content">${population.toLocaleString()}</span>
+                </p>
+                <p class="country-region">
+                  <span class="country-details-data-titles">Region:</span>
+                  <span class="country-details-data-content">${region}</span>
+                </p>
+                <p class="country-capital">
+                  <span class="country-details-data-titles">Capital:</span>
+                  <span class="country-details-data-content">${capital}</span>
+                </p>
 						</div>
-				</div>			  
-				`;
+				</div>`;
 
         img.src = `${flags.svg}`;
         imageBtn.addEventListener('click', function () {
@@ -193,9 +191,7 @@ const modalTemplate = (element) => {
 
   const borderBool = modal.classList.contains('darkMode');
 
-  modalWrapper.innerHTML = `					
-        
-		<div class="country-details">		
+  modalWrapper.innerHTML = `<div class="country-details">		
 			<img class="country-details-img" src= ${flags.svg} alt="the flag of ${
     name.common
   } " tabindex=0>

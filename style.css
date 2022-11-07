@@ -49,8 +49,11 @@ body {
 /* Image: Default Styling to make images easier to work with */
 img,
 picture {
-  max-width: 100%;
-  display: block;
+  /* max-width: 100%;
+  display: block; */
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -78,7 +81,7 @@ select {
 }
 
 :root {
-  --clr-white: white;
+  --white: white;
   --body: #f1f1f1;
   --spacer-16: 1rem;
   --spacer-30: 1.875rem;
@@ -115,7 +118,7 @@ body {
 }
 
 .header {
-  background-color: var(--clr-white);
+  background-color: var(--white);
   color: var(--black);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
 }
@@ -135,13 +138,6 @@ body {
   place-content: flex-end;
   align-items: center;
   gap: 0.5rem;
-}
-
-svg.svg-inline--fa.fa-moon.fa-w-16 {
-  max-height: 1.25rem;
-  max-width: 1.25rem;
-  font-size: small;
-  transform: rotate(-35deg);
 }
 
 .country-details-content {
@@ -187,21 +183,23 @@ svg.svg-inline--fa.fa-moon.fa-w-16 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   place-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   padding-top: 2rem;
 }
 
 .allCountries {
+  margin-top: 2rem;
   max-width: 16.5rem;
   /* box-shadow: 0 1px 6px 20px rgba(0, 0, 0, 0.06),
     0 1px 2px 4px rgba(0, 0, 0, 0.12); */
   overflow: hidden;
   border-radius: 10px;
-  background-color: var(--clr-white);
+  background-color: var(--white);
   color: var(--black);
   padding-inline: 0;
   padding-block-end: 1rem;
   padding-block-start: 0;
+  height: 400px;
 }
 
 .image-btn {
@@ -220,6 +218,7 @@ svg.svg-inline--fa.fa-moon.fa-w-16 {
 
 .country-details-wrapper {
   text-align: left;
+  height: 60%;
 }
 
 .hide-card {
@@ -234,47 +233,58 @@ svg.svg-inline--fa.fa-moon.fa-w-16 {
 
 /* Search and Select continents*/
 .continents {
-  background-color: var(--clr-white);
-  width: 60%;
+  background-color: var(--white);
+  width: 100%;
   padding: 1rem;
   border-radius: 5px;
   border: none;
 }
 
-/*Switch Mode*/
-.continents.darkMode {
-  color: hsl(0, 0%, 100%);
-}
-
-input[type='search'].darkMode {
-  color: hsl(0, 0%, 100%);
+.searchAndSelect {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .searchCountry {
+  display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
-.fa-search {
-  position: absolute;
-  top: 20%;
-  left: 2.5rem;
-  color: hsl(0, 0%, 52%);
+.fa-magnifying-glass {
+  color: black;
   z-index: 100;
+  position: relative;
+  padding: 1rem;
+  left: 4rem;
+  font-size: 24px;
 }
 
 input[type='search'] {
-  position: relative;
-  width: 100%;
-  padding: 1rem;
-  padding-left: 20%;
+  /* padding: 1rem; */
+  padding-left: 4rem;
   border: none;
   border-radius: 4px;
-  margin: 2rem auto;
-  background-color: var(--clr-white);
-  color: hsl(200, 15%, 8%);
+  background-color: var(--white);
+  color: var(--black);
 }
 
-/* Modal section */
+/*Switch Mode*/
+.continents.darkMode {
+  color: var(--white);
+}
+
+input[type='search'].darkMode {
+  color: var(--white);
+}
+
+/* Country Details Page - Modal section */
 .modal {
   position: absolute;
   width: 100%;
@@ -304,7 +314,7 @@ input[type='search'] {
 
 .back-btn,
 .border {
-  background-color: var(--clr-white);
+  background-color: var(--white);
   padding: 0.5rem 1.5rem;
   border: none;
   box-shadow: 1px 1px 8px 3px var(--black);
@@ -388,7 +398,7 @@ label.backButton {
 body.darkMode {
   color: hsl(0, 0%, 100%);
   --body: hsl(207, 26%, 17%);
-  --clr-white: hsl(209, 23%, 22%);
+  --white: hsl(209, 23%, 22%);
 }
 
 .theme-light {
